@@ -5,18 +5,19 @@ from rest_framework.response import Response
 from rest_framework import status
 from todo.models import Todo
 from .serializers import TodoSerializer
-from rest_framework import generics
-
 from rest_framework import generics, permissions
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
 class TodoList(generics.ListAPIView):
     serializer_class = TodoSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        return Todo.objects.filter(user=user).order_by('-created')
+        return Todo.objects.filter(user=self.request.user).order_by('-created')
     
     
     
@@ -48,3 +49,13 @@ class TodoListCreate(generics.CreateAPIView):
         
         
 # Update
+
+class TodoRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TodoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'id'
+
+    def get_queryset(self):
+        user = self.request.user
+        # Only return todos owned by the authenticated user
+        return Todo.objects.filter(user=user).order_by('-created')

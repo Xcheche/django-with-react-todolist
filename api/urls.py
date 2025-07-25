@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .import views
+from . import views
 urlpatterns = [
-    path('todos/', views.TodoList.as_view()),
-    path('todos/create/', views.TodoListCreate.as_view()),
-    #path('todos/<int:pk>/update/', views.TodoListUpdate.as_view()),
+    path('', views.TodoList.as_view()),
+    path('create/', views.TodoListCreate.as_view()),
+    path('todos/<int:id>/', views.TodoRetrieveUpdateDestroy.as_view()),
 ]
