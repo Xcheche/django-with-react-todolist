@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from common.models import BaseModel
+from core.models import BaseModel
 
 
 class Todo(BaseModel):
