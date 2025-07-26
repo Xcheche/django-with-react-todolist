@@ -1,4 +1,16 @@
+# Django and Django REST Framework
+Django>=5.2.0,<6.0.0
+djangorestframework>=3.14.0,<4.0.0
 
-django-cors-headers
-django
-djangorestframework
+# CORS handling
+django-cors-headers>=4.0.0,<5.0.0
+
+# Production database (optional)
+# psycopg2-binary>=2.9.0,<3.0.0
+
+# Development dependencies (optional)
+# django-debug-toolbar>=4.0.0,<5.0.0
+# django-extensions>=3.2.0,<4.0.0
+
+# Environment variables (optional)
+# python-decouple>=3.6,<4.0
